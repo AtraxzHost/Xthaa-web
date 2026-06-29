@@ -1,0 +1,318 @@
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=JetBrains+Mono:wght@400;700&display=swap');
+
+:root {
+  --color-primary-red: #EF4444;
+  --color-deep-red: #B91C1C;
+  --color-neon-rose: #FF3B30;
+  
+  --color-bg-black: #000000;
+  --color-card-black: #0A0A0A;
+  --color-border-dark: #1F1F1F;
+  --color-border-red: #EF4444;
+  
+  --color-text-primary: #FFFFFF;
+  --color-text-secondary: #8E8E93;
+  --color-text-muted: #48484A;
+}
+
+/* === BASE === */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background-color: #000000 !important;
+  color: #FFFFFF !important;
+  font-family: 'JetBrains Mono', ui-monospace, Menlo, Monaco, monospace;
+  min-height: 100vh;
+  overflow-x: hidden;
+  letter-spacing: 0px;
+}
+
+/* === ANIMATED BACKGROUND MESH === */
+.bg-mesh {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.bg-mesh::before {
+  content: '';
+  position: absolute;
+  width: 400px;
+  height: 400px;
+  background: radial-gradient(circle, rgba(239, 68, 68, 0.08) 0%, transparent 70%);
+  top: -10%;
+  left: -10%;
+  animation: float-blob-red-1 15s ease-in-out infinite;
+}
+
+.bg-mesh::after {
+  content: '';
+  position: absolute;
+  width: 350px;
+  height: 350px;
+  background: radial-gradient(circle, rgba(185, 28, 28, 0.06) 0%, transparent 70%);
+  bottom: -5%;
+  right: -5%;
+  animation: float-blob-red-2 20s ease-in-out infinite reverse;
+}
+
+@keyframes float-blob-red-1 {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  50% { transform: translate(40px, 30px) scale(1.15); }
+}
+@keyframes float-blob-red-2 {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  50% { transform: translate(-30px, -45px) scale(0.9); }
+}
+
+/* === GLASS / CARD SYSTEM === */
+.glass {
+  background-color: #0A0A0A !important;
+  border: 1px solid #1F1F1F !important;
+  border-radius: 16px;
+  transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1) !important;
+}
+
+.glass:hover {
+  border-color: #EF4444 !important;
+  box-shadow: 0 4px 15px rgba(239, 68, 68, 0.15) !important;
+  transform: translateY(-2px);
+}
+
+.glass-subtle {
+  background-color: #050505 !important;
+  border: 1px solid #1A1A1A !important;
+  border-radius: 12px;
+  transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1) !important;
+}
+.glass-subtle:hover {
+  border-color: #EF4444 !important;
+}
+
+/* === INPUTS === */
+.input-glass {
+  background-color: #050505 !important;
+  color: #FFFFFF !important;
+  border: 1px solid #1F1F1F !important;
+  border-radius: 12px !important;
+  padding: 12px 16px !important;
+  width: 100%;
+  outline: none;
+  font-family: 'JetBrains Mono', ui-monospace, monospace;
+  font-size: 13px;
+  transition: all 0.3s ease;
+}
+
+.input-glass:focus {
+  border-color: #EF4444 !important;
+  box-shadow: 0 0 12px rgba(239, 68, 68, 0.2) !important;
+}
+
+.input-glass::placeholder {
+  color: #48484A !important;
+}
+
+/* Icon color change on login input focus */
+#loginForm .relative:focus-within label {
+  color: #EF4444 !important;
+}
+#loginForm .relative:focus-within svg {
+  color: #EF4444 !important;
+  stroke: #EF4444 !important;
+}
+
+/* === BUTTONS === */
+.btn-primary {
+  background-color: #EF4444 !important;
+  color: #FFFFFF !important;
+  border: 1px solid #EF4444 !important;
+  border-radius: 12px !important;
+  font-weight: 700 !important;
+  padding: 12px 20px !important;
+  cursor: pointer;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  font-size: 11px;
+  transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1) !important;
+  text-align: center;
+}
+
+.btn-primary:hover:not(:disabled) {
+  background-color: #FF3B30 !important;
+  border-color: #FF3B30 !important;
+  box-shadow: 0 0 18px rgba(239, 68, 68, 0.5) !important;
+  transform: scale(1.02);
+}
+
+.btn-primary:active:not(:disabled) {
+  transform: scale(0.98);
+}
+
+.btn-primary:disabled {
+  background-color: #1F1F1F !important;
+  border-color: #1F1F1F !important;
+  color: #48484A !important;
+  cursor: not-allowed;
+  box-shadow: none !important;
+}
+
+.btn-secondary {
+  background-color: transparent !important;
+  color: #8E8E93 !important;
+  border: 1px solid #1F1F1F !important;
+  border-radius: 12px !important;
+  padding: 12px 20px !important;
+  cursor: pointer;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  font-size: 11px;
+  transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1) !important;
+  text-align: center;
+}
+
+.btn-secondary:hover:not(:disabled) {
+  background-color: #0A0A0A !important;
+  color: #FFFFFF !important;
+  border-color: #EF4444 !important;
+  transform: translateY(-1px);
+}
+
+.btn-ghost {
+  background-color: rgba(255, 255, 255, 0.02) !important;
+  border: 1px solid #1F1F1F !important;
+  color: #8E8E93 !important;
+  padding: 10px 18px !important;
+  border-radius: 12px !important;
+  font-weight: 600 !important;
+  cursor: pointer;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  font-size: 10px;
+  transition: all 0.3s ease;
+}
+
+.btn-ghost:hover {
+  background-color: rgba(255, 255, 255, 0.05) !important;
+  color: #FFFFFF !important;
+  border-color: #EF4444 !important;
+}
+
+.link-button-style {
+  background-color: #0A0A0A !important;
+  color: #EF4444 !important;
+  border: 1px solid #1F1F1F !important;
+  border-radius: 12px;
+  padding: 12px;
+  text-align: center;
+  text-decoration: none;
+  font-weight: bold;
+  font-size: 12px;
+  letter-spacing: 1px;
+  transition: all 0.3s ease;
+  display: block;
+}
+
+.link-button-style:hover {
+  background-color: #150505 !important;
+  border-color: #EF4444 !important;
+  box-shadow: 0 0 12px rgba(239, 68, 68, 0.2);
+}
+
+/* === GLOW ACCENTS === */
+.glow-red {
+  box-shadow: 0 0 20px rgba(239, 68, 68, 0.15), inset 0 1px 0 rgba(255, 255, 255, 0.05);
+}
+
+.glow-red-dot {
+  box-shadow: 0 0 10px #EF4444, 0 0 20px #EF4444;
+  animation: pulse-red 1.5s ease-in-out infinite;
+}
+
+@keyframes pulse-red {
+  0%, 100% { transform: scale(1); opacity: 0.6; box-shadow: 0 0 4px #EF4444; }
+  50% { transform: scale(1.15); opacity: 1; box-shadow: 0 0 12px #EF4444, 0 0 20px #EF4444; }
+}
+
+/* === SCROLLBAR === */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: #1F1F1F; border-radius: 10px; }
+::-webkit-scrollbar-thumb:hover { background: #EF4444; }
+
+/* === ANIMATIONS === */
+@keyframes slide-up {
+  from { opacity: 0; transform: translateY(12px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.anim-slide-up {
+  animation: slide-up 0.5s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+.anim-stagger-1 { animation-delay: 0.05s; opacity: 0; }
+.anim-stagger-2 { animation-delay: 0.1s; opacity: 0; }
+.anim-stagger-3 { animation-delay: 0.15s; opacity: 0; }
+.anim-stagger-4 { animation-delay: 0.2s; opacity: 0; }
+
+@keyframes slide-right {
+  from { transform: translateX(-100%); }
+  to { transform: translateX(0); }
+}
+
+.anim-slide-right {
+  animation: slide-right 0.4s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+@keyframes fade-in {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+.anim-fade-in {
+  animation: fade-in 0.3s ease-out forwards;
+}
+
+/* === LABEL === */
+.label {
+  font-size: 10px;
+  letter-spacing: 0.2em;
+  color: #8E8E93;
+  text-transform: uppercase;
+  font-weight: 700;
+}
+
+.text-shimmer {
+  background: linear-gradient(120deg, #EF4444 25%, #FF3B30 50%, #EF4444 75%);
+  background-size: 200% auto;
+  color: transparent;
+  background-clip: text;
+  -webkit-background-clip: text;
+  animation: shine 3s linear infinite;
+}
+
+@keyframes shine {
+  to { background-position: 200% center; }
+}
+
+/* Terminal Scanning Line Effect */
+.terminal-output {
+  position: relative;
+  overflow: hidden;
+}
+
+.terminal-output::after {
+  content: " ";
+  display: block;
+  position: absolute;
+  top: 0; left: 0; bottom: 0; right: 0;
+  background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.25) 50%), linear-gradient(90deg, rgba(255, 0, 0, 0.06), rgba(0, 255, 0, 0), rgba(0, 0, 255, 0.06));
+  z-index: 2;
+  background-size: 100% 2px, 3px 100%;
+  pointer-events: none;
+}
