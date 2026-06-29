@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en" class="h-full">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>THE EXECUTOR - LOGIN</title>
+  <!-- Tailwind CSS Play CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            background: '#000000',
+            foreground: '#ffffff',
+          },
+          fontFamily: {
+            orbitron: ['Orbitron', 'sans-serif'],
+          }
+        }
+      }
+    }
+  </script>
+  <!-- Standalone custom glass styles and animations -->
+  <link rel="stylesheet" href="/css/style.css?v=5">
+  <meta name="theme-color" content="#000000">
+  <link rel="manifest" href="/manifest.json">
+  <link rel="apple-touch-icon" href="/img/icon-192.png">
+</head>
+<body class="min-h-full flex flex-col justify-center bg-background text-foreground">
+  <!-- Animated background mesh -->
+  <div class="bg-mesh"></div>
+
+  <!-- Credit Violation Screen (shown if developer credit is removed/modified) -->
+  <div id="creditViolationScreen" class="hidden relative z-10 w-full max-w-[430px] mx-auto min-h-[100vh] flex flex-col justify-center px-6">
+    <div class="glass p-8 text-center anim-slide-up relative overflow-hidden border border-red-500/30">
+      <div class="absolute -top-10 left-1/2 -translate-x-1/2 w-60 h-60 bg-red-500/10 rounded-full blur-3xl pointer-events-none"></div>
+      <div class="absolute inset-0 bg-gradient-to-b from-red-500/5 to-transparent pointer-events-none"></div>
+      <div class="relative space-y-6">
+        <div class="w-20 h-20 rounded-3xl bg-red-500/15 border border-red-500/30 flex items-center justify-center mx-auto shadow-[0_0_40px_rgba(239,68,68,0.2)]">
+          <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-red-400">
+            <path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"></path>
+            <line x1="12" y1="9" x2="12" y2="13"></line>
+            <line x1="12" y1="17" x2="12.01" y2="17"></line>
+          </svg>
+        </div>
+        <div>
+          <h2 class="text-lg font-bold tracking-[0.2em] text-red-400 font-orbitron">CREDIT VIOLATION</h2>
+          <p class="text-[9px] tracking-[0.15em] text-red-300 mt-1 font-semibold">SYSTEM INTEGRITY CHECK FAILED</p>
+        </div>
+        <p class="text-xs text-zinc-400 leading-relaxed tracking-wide">
+          The base developer credit <span class="text-red-300 font-bold">"Vanness Wangsaff"</span> has been
+          <span class="text-red-400 font-bold">removed or modified</span> from the system configuration.
+          This credit is <span class="text-white font-semibold">required and must not be altered</span>.
+        </p>
+        <div class="p-4 rounded-xl bg-zinc-950/60 border border-red-500/20 text-left space-y-2">
+          <p class="text-[10px] text-red-400 tracking-wider font-bold">⚠️ HOW TO FIX</p>
+          <p class="text-[11px] text-zinc-400 leading-relaxed font-sans">
+            1. Open <span class="text-zinc-200 font-mono font-bold">config.js</span> in your project root.<br>
+            2. Ensure <span class="text-zinc-200 font-mono font-bold">CREDITS</span> array contains <span class="text-red-300 font-bold">"Vanness Wangsaff"</span>.<br>
+            3. Restart the server.
+          </p>
+        </div>
+        <div class="p-3 rounded-xl bg-red-500/10 border border-red-500/20">
+          <p class="text-[9px] text-red-300 tracking-wider font-bold uppercase">Credit Developer Base Tidak Boleh Dihapus!</p>
+        </div>
+      </div>
+    </div>
+    <div class="text-center mt-6">
+      <p class="text-[9px] tracking-[0.2em] text-zinc-600 font-bold">POWERED BY @VANNESSWANGSAFF</p>
+    </div>
+  </div>
+
+  <!-- Login Container -->
+  <div id="loginContainer" class="relative z-10 w-full max-w-[430px] mx-auto min-h-[100vh] flex flex-col justify-center px-6">
+    <div class="glass p-8 text-center anim-slide-up relative overflow-hidden">
+      <!-- Glow accent light -->
+      <div class="absolute -top-10 left-1/2 -translate-x-1/2 w-60 h-60 bg-red-500/5 rounded-full blur-3xl pointer-events-none"></div>
+ 
+      <div class="relative space-y-6">
+        <!-- Logo -->
+        <div class="relative w-24 h-24 rounded-full p-[2px] bg-red-500/10 border border-red-500/20 shadow-[0_0_20px_rgba(239,68,68,0.1)] mx-auto overflow-hidden">
+          <div class="w-full h-full rounded-full bg-[#000000] overflow-hidden flex items-center justify-center">
+            <img src="/logo.png" alt="Logo" class="w-full h-full object-cover">
+          </div>
+        </div>
+
+        <div>
+          <h1 class="text-xl font-bold tracking-[0.25em] text-white font-orbitron">THE EXECUTOR</h1>
+        </div>
+
+        <!-- Login Form -->
+        <form id="loginForm" class="space-y-4 pt-2">
+          <div class="relative">
+            <div class="absolute left-4 top-1/2 -translate-y-1/2 pointer-events-none">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-zinc-500">
+                <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+                <circle cx="12" cy="7" r="4"></circle>
+              </svg>
+            </div>
+            <input
+              id="usernameInput"
+              type="text"
+              class="input-glass text-left text-md tracking-[0.1em] placeholder:tracking-[0.1em] !pl-11"
+              placeholder="Username"
+              required
+            >
+            <label class="absolute right-4 top-1/2 -translate-y-1/2 text-[8px] tracking-[0.15em] text-zinc-600 font-bold uppercase pointer-events-none">REQUIRED</label>
+          </div>
+
+          <div class="relative">
+            <div class="absolute left-4 top-1/2 -translate-y-1/2 pointer-events-none">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-zinc-500">
+                <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
+                <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
+              </svg>
+            </div>
+            <input
+              id="passwordInput"
+              type="password"
+              class="input-glass text-left text-md tracking-[0.1em] !pl-11"
+              placeholder="Password"
+              required
+            >
+            <label class="absolute right-4 top-1/2 -translate-y-1/2 text-[8px] tracking-[0.15em] text-zinc-600 font-bold uppercase pointer-events-none">REQUIRED</label>
+          </div>
+
+          <!-- Error Message Container -->
+          <div id="errorContainer" class="p-3.5 rounded-xl bg-red-500/10 border border-red-500/20 text-center glow-red hidden">
+            <p id="errorMessage" class="text-[10px] text-red-400 font-extrabold tracking-wider uppercase">
+              ⚠️ INVALID USERNAME
+            </p>
+          </div>
+
+          <button
+            id="submitButton"
+            type="submit"
+            class="btn-primary w-full py-4 text-xs"
+          >
+            AUTHORIZE ACCESS
+          </button>
+        </form>
+
+        <!-- Attention Box -->
+        <div class="p-4 rounded-xl bg-zinc-950/45 border border-zinc-800/80 text-left space-y-2">
+          <p class="text-[10px] text-zinc-500 tracking-wider font-bold">ATTENTION</p>
+          <p class="text-[10px] text-zinc-400 leading-relaxed font-sans">
+            Access is restricted to authorized credentials. Request node creation via the official Telegram account gateway.
+          </p>
+        </div>
+
+        <!-- Link -->
+        <div class="pt-2 flex flex-col gap-2">
+          <a
+            href="https://t.me/VannessWangsaff"
+            target="_blank"
+            rel="noreferrer"
+            class="btn-ghost w-full py-3.5 text-[10px] text-center"
+          >
+            CONTACT ADMINISTRATOR
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <div class="text-center mt-6">
+      <p class="text-[9px] tracking-[0.2em] text-zinc-600 font-bold">POWERED BY @VANNESSWANGSAFF</p>
+    </div>
+  </div>
+
+  <script src="/js/login.js?v=5"></script>
+  <script>
+    if ('serviceWorker' in navigator) {
+      window.addEventListener('load', () => {
+        navigator.serviceWorker.register('/sw.js')
+          .then(reg => console.log('[Service Worker] Registered', reg.scope))
+          .catch(err => console.error('[Service Worker] Registration failed', err));
+      });
+    }
+  </script>
+</body>
+</html>
